@@ -23,6 +23,15 @@ class Table extends Component {
     });
   }
 
+  removeRow = () => {
+    this.setState(state => {
+      return {
+        numRows: state.numRows <= 1 ? 1: state.numRows - 1 
+      }
+
+    });
+  }
+
   handleColorChange = (event) => {
     this.setState({selectedColor: event.target.value});
   }
@@ -43,7 +52,7 @@ class Table extends Component {
       <div>
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addColumn}>Add Column</button>
-        <button>Remove Row</button>
+        <button onClick={this.removeRow}>Remove Row</button>
         <button>Remove Col</button>
         <button>Fill All Uncolored</button>
         <button>Fill All</button>
