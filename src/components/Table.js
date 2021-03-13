@@ -25,10 +25,14 @@ class Table extends Component {
 
   removeRow = () => {
     this.setState(state => {
-      return {
-        numRows: state.numRows <= 1 ? 1: state.numRows - 1 
-      }
+      return { numRows: state.numRows <= 1 ? 1: state.numRows - 1}
 
+    });
+  }
+
+  removeCol = () => {
+    this.setState(state => {
+      return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
     });
   }
 
@@ -53,7 +57,7 @@ class Table extends Component {
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addColumn}>Add Column</button>
         <button onClick={this.removeRow}>Remove Row</button>
-        <button>Remove Col</button>
+        <button onClick={this.removeCol}>Remove Col</button>
         <button>Fill All Uncolored</button>
         <button>Fill All</button>
         <button>Clear</button>
