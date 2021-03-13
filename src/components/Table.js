@@ -38,10 +38,16 @@ class Table extends Component {
       rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} />);
     }
 
+    //TODO: Add onclick functions to the buttons 
     return (
       <div>
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addColumn}>Add Column</button>
+        <button>Remove Row</button>
+        <button>Remove Col</button>
+        <button>Fill All Uncolored</button>
+        <button>Fill All</button>
+        <button>Clear</button>
         <select onChange={this.handleColorChange}>
           <option value="red">red</option>
           <option value="blue">blue</option>
