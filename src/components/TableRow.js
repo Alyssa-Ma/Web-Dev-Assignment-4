@@ -1,4 +1,4 @@
-import TableCell from "./components/TableCell";
+import TableCell from "./TableCell";
 
 function TableRow(props) {
   let cells = [];
