@@ -23,6 +23,19 @@ class Table extends Component {
     });
   }
 
+  removeRow = () => {
+    this.setState(state => {
+      return { numRows: state.numRows <= 1 ? 1: state.numRows - 1}
+
+    });
+  }
+
+  removeCol = () => {
+    this.setState(state => {
+      return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
+    });
+  }
+
   handleColorChange = (event) => {
     this.setState({selectedColor: event.target.value});
   }
@@ -38,10 +51,16 @@ class Table extends Component {
       rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} />);
     }
 
+    //TODO: Add onclick functions to the buttons 
     return (
       <div>
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addColumn}>Add Column</button>
+        <button onClick={this.removeRow}>Remove Row</button>
+        <button onClick={this.removeCol}>Remove Col</button>
+        <button>Fill All Uncolored</button>
+        <button>Fill All</button>
+        <button>Clear</button>
         <select onChange={this.handleColorChange}>
           <option value="red">red</option>
           <option value="blue">blue</option>
