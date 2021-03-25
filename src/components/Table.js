@@ -1,4 +1,5 @@
 import { Component } from "react";
+import TableCell from "./TableCell";
 import TableRow from "./TableRow";
 
 class Table extends Component {
@@ -44,6 +45,18 @@ class Table extends Component {
     event.target.style.backgroundColor = this.state.selectedColor;
   }
 
+  fillAll=()=>{
+    let row = document.getElementsByTagName("tr")
+    for(const element of row)
+    {
+      let col = element.getElementsByTagName("td");
+      for(let j = 0; j < this.state.numCols; j++)
+      {
+        col[j].style.background = this.state.selectedColor;
+      }
+    }
+  }
+
   render() {
     let rows = [];
 
@@ -59,7 +72,7 @@ class Table extends Component {
         <button onClick={this.removeRow}>Remove Row</button>
         <button onClick={this.removeCol}>Remove Col</button>
         <button>Fill All Uncolored</button>
-        <button>Fill All</button>
+        <button onClick={this.fillAll}>Fill All</button>
         <button>Clear</button>
         <select onChange={this.handleColorChange}>
           <option value="red">red</option>
