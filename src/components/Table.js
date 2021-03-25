@@ -38,7 +38,6 @@ class Table extends Component {
       return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
     });
   }
-
   fillU = () => {
     let table = ReactDOM.findDOMNode(this.grid.current).childNodes;
 
@@ -52,7 +51,6 @@ class Table extends Component {
       }
     });
   }
-
   fillAll = () => {
     let row = document.getElementsByTagName("tr")
     for(const element of row)
@@ -68,7 +66,6 @@ class Table extends Component {
   clearAll = () => {
     let table = ReactDOM.findDOMNode(this.grid.current).childNodes; //tr = nodes, td = childNodes
     //console.log(table)
-
     table.forEach(row => { // 1st loop
       for(let i = 0; i < this.state.numCols; i++) { // 2nd loop
         let backgroundColor = row.childNodes[i].style.backgroundColor
