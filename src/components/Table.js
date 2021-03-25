@@ -45,7 +45,7 @@ class Table extends Component {
     event.target.style.backgroundColor = this.state.selectedColor;
   }
 
-  fillAll=()=>{
+  fillAll = () => {
     let row = document.getElementsByTagName("tr")
     for(const element of row)
     {
