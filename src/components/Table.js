@@ -40,7 +40,8 @@ class Table extends Component {
   }
 
   clearAll = () => {
-    let table = ReactDOM.findDOMNode(this.grid.current).childNodes;
+    let table = ReactDOM.findDOMNode(this.grid.current).childNodes; //tr = nodes, td = childNodes
+    //console.log(table)
 
     table.forEach(row => {
       for(let i = 0; i < this.state.numCols; i++) {
@@ -63,13 +64,11 @@ class Table extends Component {
 
   render() {
     let rows = [];
-    console.log(rows)
 
     for (let i = 0; i < this.state.numRows; i++) {
-      rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} backgroundColor={this.state.color} />);
+      rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} />);
     }
 
-    //TODO: Add onclick functions to the buttons 
     return (
       <div>
         <button onClick={this.addRow}>Add Row</button>
