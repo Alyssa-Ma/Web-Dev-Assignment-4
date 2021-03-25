@@ -39,6 +39,18 @@ class Table extends Component {
     });
   }
 
+  fillAll = () => {
+    let row = document.getElementsByTagName("tr")
+    for(const element of row)
+    {
+      let col = element.getElementsByTagName("td");
+      for(let j = 0; j < this.state.numCols; j++)
+      {
+        col[j].style.background = this.state.selectedColor;
+      }
+    }
+  }
+
   clearAll = () => {
     let table = ReactDOM.findDOMNode(this.grid.current).childNodes; //tr = nodes, td = childNodes
     //console.log(table)
@@ -76,7 +88,7 @@ class Table extends Component {
         <button onClick={this.removeRow}>Remove Row</button>
         <button onClick={this.removeCol}>Remove Col</button>
         <button>Fill All Uncolored</button>
-        <button>Fill All</button>
+        <button onClick={this.fillAll}>Fill All</button>
         <button onClick={this.clearAll}>Clear</button>
         <select onChange={this.handleColorChange}>
           <option value="red">Red</option>
