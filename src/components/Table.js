@@ -38,6 +38,7 @@ class Table extends Component {
       return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
     });
   }
+
   fillU = () => {
     let table = ReactDOM.findDOMNode(this.grid.current).childNodes;
 
@@ -51,6 +52,7 @@ class Table extends Component {
       }
     });
   }
+  
   fillAll = () => {
     let row = document.getElementsByTagName("tr")
     for(const element of row)
@@ -71,7 +73,7 @@ class Table extends Component {
         let backgroundColor = row.childNodes[i].style.backgroundColor
         
         if(backgroundColor !== "")
-          row.childNodes[i].style.backgroundColor = "white"
+          row.childNodes[i].style.backgroundColor = ""
           
       }
     });
