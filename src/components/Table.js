@@ -38,7 +38,19 @@ class Table extends Component {
       return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
     });
   }
+  fillU = () => {
+    let table = ReactDOM.findDOMNode(this.grid.current).childNodes;
 
+    table.forEach(row => {
+      for(let i = 0; i < this.state.numCols; i++) {
+        let backgroundColor = row.childNodes[i].style.backgroundColor
+        
+        if(backgroundColor === "")
+          row.childNodes[i].style.backgroundColor = this.state.selectedColor
+          
+      }
+    });
+  }
   fillAll = () => {
     let row = document.getElementsByTagName("tr")
     for(const element of row)
@@ -54,9 +66,8 @@ class Table extends Component {
   clearAll = () => {
     let table = ReactDOM.findDOMNode(this.grid.current).childNodes; //tr = nodes, td = childNodes
     //console.log(table)
-
-    table.forEach(row => {
-      for(let i = 0; i < this.state.numCols; i++) {
+    table.forEach(row => { // 1st loop
+      for(let i = 0; i < this.state.numCols; i++) { // 2nd loop
         let backgroundColor = row.childNodes[i].style.backgroundColor
         
         if(backgroundColor !== "")
@@ -87,14 +98,17 @@ class Table extends Component {
         <button onClick={this.addColumn}>Add Column</button>
         <button onClick={this.removeRow}>Remove Row</button>
         <button onClick={this.removeCol}>Remove Col</button>
-        <button>Fill All Uncolored</button>
+        <button onClick={this.fillU}>Fill All Uncolored</button>
         <button onClick={this.fillAll}>Fill All</button>
         <button onClick={this.clearAll}>Clear</button>
         <select onChange={this.handleColorChange}>
           <option value="red">Red</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
           <option value="green">Green</option>
           <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
+          <option value="indigo">Indigo</option>
+          <option value="purple">Purple</option>
         </select>
         <table ref={this.grid}>
           {rows}
