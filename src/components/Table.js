@@ -1,5 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import TableRow from "./TableRow";
+import ReactDOM from 'react-dom';
 
 class Table extends Component {
   constructor() {
@@ -9,6 +10,9 @@ class Table extends Component {
       numCols: 1,
       selectedColor: "red"
     }
+    
+    this.grid = React.createRef();
+
   }
 
   addRow = () => {
@@ -25,14 +29,27 @@ class Table extends Component {
 
   removeRow = () => {
     this.setState(state => {
-      return { numRows: state.numRows <= 1 ? 1: state.numRows - 1}
-
+      return { numRows: state.numRows <= 1 ? 1: state.numRows - 1} //if numRows is greater than or equal to 1
     });
   }
 
   removeCol = () => {
     this.setState(state => {
       return {numCols: state.numCols <= 1 ? 1: state.numCols - 1}
+    });
+  }
+
+  clearAll = () => {
+    let table = ReactDOM.findDOMNode(this.grid.current).childNodes;
+
+    table.forEach(row => {
+      for(let i = 0; i < this.state.numCols; i++) {
+        let backgroundColor = row.childNodes[i].style.backgroundColor
+        
+        if(backgroundColor !== "")
+          row.childNodes[i].style.backgroundColor = "white"
+          
+      }
     });
   }
 
@@ -46,9 +63,10 @@ class Table extends Component {
 
   render() {
     let rows = [];
+    console.log(rows)
 
     for (let i = 0; i < this.state.numRows; i++) {
-      rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} />);
+      rows.push(<TableRow numCols={this.state.numCols} handleApplyColor={this.handleApplyColor} backgroundColor={this.state.color} />);
     }
 
     //TODO: Add onclick functions to the buttons 
@@ -60,13 +78,14 @@ class Table extends Component {
         <button onClick={this.removeCol}>Remove Col</button>
         <button>Fill All Uncolored</button>
         <button>Fill All</button>
-        <button>Clear</button>
+        <button onClick={this.clearAll}>Clear</button>
         <select onChange={this.handleColorChange}>
-          <option value="red">red</option>
-          <option value="blue">blue</option>
-          <option value="yellow">yellow</option>
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
         </select>
-        <table>
+        <table ref={this.grid}>
           {rows}
         </table>
       </div>
